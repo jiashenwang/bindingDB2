@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">bindingDB</string>
+    <string name="title_section1">Search By Protein</string>
+    <string name="title_section2">Search By Compound</string>
+    <string name="action_settings">Settings</string>
+    <string name="search_protein">Search By Protein:</string>
+    <string name="protein_name_hint">Name of Protein</string>
+    <string name="uniprot_hint">UNIPROT</string>
+    <string name="search_compound">Search By Compound:</string>
+    <string name="protein_search_btn">Search</string>
+    <string name="or">or</string>
+
+    <string-array name="titles">
+        <item>title 1</item>
+        <item>title 2</item>
+        <item>title 3</item>
+        <item>title 4</item>
+        <item>title 5</item>
+    </string-array>
+    <string-array name="descriptions">
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+    </string-array>
+    <string-array name="ic">
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+    </string-array>
+
+
+    <string name="title_activity_test">TestActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>
