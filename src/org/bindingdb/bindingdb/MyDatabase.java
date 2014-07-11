@@ -72,7 +72,7 @@ public class MyDatabase extends SQLiteAssetHelper {
 	    // Select All Query
 	    String selectQuery = "SELECT  * " +
 	    					 "FROM " + sqlTables + " " +
-	    					 "WHERE "+ "UniProt_SwissProt_Recommended_Name_of_Target_Chain" + " = \"" + protain +"\"";
+	    					 "WHERE "+ "UniProt_SwissProt_Recommended_Name_of_Target_Chain" + " LIKE \"" + "%"+ protain + "%" +"\"";
 	 
 	    // get a writable instance of our database 
 	    SQLiteDatabase db = this.getReadableDatabase();
