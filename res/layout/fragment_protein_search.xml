@@ -28,15 +28,24 @@
         android:layout_marginTop="10dp"
         android:hint="@string/protein_name_hint" />
     
+     <Button 
+        android:id="@+id/protein_search_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:layout_below="@id/protein_name_search"
+        android:layout_marginTop="5dp"
+        android:text="Search by Protein Name" />
+    
     <TextView
     	android:id="@+id/or_separator"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:gravity="center"
-    	android:layout_below="@id/protein_name_search"
+    	android:layout_below="@id/protein_search_btn"
     	android:paddingTop="10dp"
     	android:textSize="18sp"
-    	android:text="@string/or" />
+    	android:text="@string/or" 
+    	/>
     
     <EditText
         android:id="@+id/uniprot_search"
@@ -46,34 +55,14 @@
         android:layout_marginTop="10dp"
         android:hint="@string/uniprot_hint" />
     
-    <RadioGroup android:id="@+id/radio_group"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-	    android:layout_below="@id/uniprot_search"
-	    >
-	    
-			    <RadioButton android:id="@+id/firstB"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:text="Searching by protein"
-			        android:onClick="onRadioButtonClicked"/>	
-				
-			    <RadioButton android:id="@+id/secondB"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:text="Searching by UNIPROT number"
-			        android:onClick="onRadioButtonClicked"/>
-
-	</RadioGroup>
     
     <Button 
-        android:id="@+id/protein_search_btn"
+        android:id="@+id/id_search_btn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
-        android:layout_below="@id/radio_group"
+        android:layout_below="@id/uniprot_search"
         android:layout_marginTop="5dp"
-        android:text="@string/protein_search_btn" />
+        android:text="Search By ID" />
     
 
 </RelativeLayout>

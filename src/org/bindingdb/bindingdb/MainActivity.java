@@ -170,9 +170,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 		EditText text1;
 		EditText text2;
 		
-		RadioGroup searchMethod;
-		RadioButton searchByName;
-		RadioButton searchByID;
+		//RadioGroup searchMethod;
+		//RadioButton searchByName;
+		//RadioButton searchByID;
 		
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
@@ -181,101 +181,80 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             
             
             Button button = (Button)rootView.findViewById(R.id.protein_search_btn);
+            Button button2 = (Button)rootView.findViewById(R.id.id_search_btn);
     		text1 = (EditText)rootView.findViewById(R.id.protein_name_search);
     		text2 = (EditText)rootView.findViewById(R.id.uniprot_search);
     		
-        	searchByName = (RadioButton) rootView.findViewById(R.id.firstB);
-        	searchByID = (RadioButton) rootView.findViewById(R.id.secondB);
+        	//searchByName = (RadioButton) rootView.findViewById(R.id.firstB);
+        	//searchByID = (RadioButton) rootView.findViewById(R.id.secondB);
     		
-        	searchMethod = (RadioGroup) rootView.findViewById(R.id.radio_group);
-        	searchMethod.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-        		
-        		@Override
-        		public void onCheckedChanged(RadioGroup group, int checkedId){
-        			
-        			if(searchByName.isSelected())
-        			{
-        				Toast.makeText(rootView.getContext(), "Searching by name selected", Toast.LENGTH_SHORT).show();
-        				text1.setEnabled(true);
-        				text2.setEnabled(false);
-        			}
-        			else
-        			{
-        				Toast.makeText(rootView.getContext(), "Searching by ID selected", Toast.LENGTH_SHORT).show();
-        				text1.setEnabled(false);
-        				text2.setEnabled(true);
-        			}
-        		}
-        	});
+        	//searchMethod = (RadioGroup) rootView.findViewById(R.id.radio_group);
+
         	
         	
-        	
-            
-    		//onRadioButtonClicked(rootView);
-    		/*
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     // Perform action on click
                 	
 
-                	
-                	if(searchByName.isSelected())
-                	{
-                		
-                	}
-                	else if(searchByID.isSelected())
-                	{
-                		
-                	}
-                	else
-                	{
-                		
-                	}
-                	if(!text1.getText().toString().isEmpty()
-                			|| !text2.getText().toString().isEmpty())
+                	if(!text1.getText().toString().isEmpty())
                 	{
                     	Intent intent = new Intent(getActivity(), SearchResult.class);
                     	intent.putExtra("potain",text1.getText().toString());
-                    	intent.putExtra("Uni_id",text2.getText().toString());
+                    	intent.putExtra("Uni_id","");
                     	startActivity(intent);
                 	}
                 	else
                 	{
-                		Toast.makeText(v.getContext(),"Please enter at least one piece of information",
+                		Toast.makeText(v.getContext(),"Please enter Protein Name!",
 	        					Toast.LENGTH_SHORT).show();
                 	}
 
                 }
             });
-            */
             
+            button2.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // Perform action on click
+                	
+
+                	if(!text2.getText().toString().isEmpty())
+                	{
+                    	Intent intent = new Intent(getActivity(), SearchResult.class);
+                    	intent.putExtra("potain","");
+                    	intent.putExtra("Uni_id",text2.getText().toString());
+                    	startActivity(intent);
+                	}
+                	else
+                	{
+                		Toast.makeText(v.getContext(),"Please enter UNIPORT ID!",
+	        					Toast.LENGTH_SHORT).show();
+                	}
+
+                }
+            });
+
+//        	searchMethod.setOnCheckedChangeListener(new OnCheckedChangeListener(){  		
+//        		@Override
+//        		public void onCheckedChanged(RadioGroup group, int checkedId){
+//        			
+//        			if(checkedId == R.id.firstB)
+//        			{
+//        				Toast.makeText(rootView.getContext(), "Searching by name selected", Toast.LENGTH_SHORT).show();
+//        				text1.setEnabled(true);
+//        				text2.setEnabled(false);
+//        			}
+//        			else if(checkedId == R.id.secondB)
+//        			{
+//        				Toast.makeText(rootView.getContext(), "Searching by ID selected", Toast.LENGTH_SHORT).show();
+//        				text1.setEnabled(false);
+//        				text2.setEnabled(true);
+//        			}
+//        		}
+//        	});
             
             return rootView;
 		}
-		/*
-		public void onRadioButtonClicked(View view) {
-		    // Is the button now checked?
-		    boolean checked = ((RadioButton) view).isChecked();
-		    
-		    // Check which radio button was clicked
-		    switch(view.getId()) {
-		        case R.id.firstB:
-		            if (checked){
-		                // Pirates are the best
-		            	text1.setEnabled(true);
-		            	text2.setEnabled(false);
-		            }
-		            
-		            break;
-		        case R.id.secondB:
-		            if (checked){
-		                // Ninjas rule
-		            	text2.setEnabled(true);
-		            	text1.setEnabled(false);
-		            }
-		            break;
-		    }
-		}*/
 	}
 	
 

@@ -16,7 +16,7 @@
         android:id="@+id/no_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
-		android:text="Sorry, No Result Found"
+		android:text="Searching Results:"
 		android:visibility="invisible"
         />
     

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -150,10 +151,13 @@ public class SearchResult extends Activity{
 			if(items.Largelist.size() >= 10000)
 			{
 				spinner.setVisibility(View.GONE);
+				text2.setText("Sorry, The information you entered is too general, please be more accurate specific!", 
+						TextView.BufferType.EDITABLE);
 				text2.setVisibility(View.VISIBLE);
 				return;
 			}
-			
+			text2.setText("Search Results:", TextView.BufferType.EDITABLE);
+			text2.setVisibility(View.VISIBLE);
 			pre.setEnabled(true);
 			next.setEnabled(true);
 			spinner.setVisibility(View.GONE);
@@ -385,6 +389,7 @@ class BarAdapter extends BaseAdapter
 		ImageView image = (ImageView)row.findViewById(R.id.imageView);
 		TextView ic = (TextView)row.findViewById(R.id.IC50);
 		TextView smile = (TextView)row.findViewById(R.id.SMILES);
+		TextView cName = (TextView)row.findViewById(R.id.c_name);
 
 
 
@@ -412,7 +417,6 @@ class BarAdapter extends BaseAdapter
 			 @Override
 			 public void onClick(View v) {
 			  // TODO Auto-generated method stub
-			  Log.i("Edit Button Clicked", "**********");
 			  Toast.makeText(context, "Opening the Webpage of the selected compound",
 			    Toast.LENGTH_LONG).show();
 			  
@@ -424,10 +428,16 @@ class BarAdapter extends BaseAdapter
 
 
 		title.setText(temp.UniProt_Recommended_Name_of_Target_Chain);
+		title.setTypeface(null, Typeface.BOLD);
 		description.setText(temp.Ki);
+		description.setTypeface(null, Typeface.BOLD);
 		image.setImageResource(temp.img);
 		ic.setText(temp.IC50);
+		ic.setTypeface(null, Typeface.BOLD);
 		smile.setText(temp.UniProt_Primary_ID_of_Target_Chain);
+		smile.setTypeface(null, Typeface.BOLD);
+		cName.setText(temp.BindingDB_Ligand_Name);
+		cName.setTypeface(null, Typeface.BOLD);
 
 
 
