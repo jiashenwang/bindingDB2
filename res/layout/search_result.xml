@@ -19,6 +19,14 @@
 		android:text="Sorry, No Result Found"
 		android:visibility="invisible"
         />
+    
+    <TextView 
+        android:id="@+id/too_general"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+		android:text="Sorry, the information you entered is too general, please search again!"
+		android:visibility="invisible"
+        />    
 
     <ListView
         android:id="@+id/result_list"

@@ -98,8 +98,12 @@ public class MyDatabase extends SQLiteAssetHelper {
 	        	entry.UniProt_Primary_ID_of_Target_Chain = cursor.getString(7);
 	        	
 
+	        	
 	            // Adding placeIt to list
 	        	list.add(entry);
+	        	
+	        	if(list.size() >= 10000)
+	        		return list;
 	        } while (cursor.moveToNext());
 	    }
 		return list;

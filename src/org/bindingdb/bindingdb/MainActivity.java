@@ -20,6 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -164,19 +167,70 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 	
 	public static class ProteinSearchFragment extends Fragment {
 		
+		EditText text1;
+		EditText text2;
+		
+		RadioGroup searchMethod;
+		RadioButton searchByName;
+		RadioButton searchByID;
 		
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_protein_search, container, false);
+			
+            final View rootView = inflater.inflate(R.layout.fragment_protein_search, container, false);
             
             
             Button button = (Button)rootView.findViewById(R.id.protein_search_btn);
-    		final EditText text1 = (EditText)rootView.findViewById(R.id.protein_name_search);
-    		final EditText text2 = (EditText)rootView.findViewById(R.id.uniprot_search);
+    		text1 = (EditText)rootView.findViewById(R.id.protein_name_search);
+    		text2 = (EditText)rootView.findViewById(R.id.uniprot_search);
+    		
+        	searchByName = (RadioButton) rootView.findViewById(R.id.firstB);
+        	searchByID = (RadioButton) rootView.findViewById(R.id.secondB);
+    		
+        	searchMethod = (RadioGroup) rootView.findViewById(R.id.radio_group);
+        	searchMethod.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+        		
+        		@Override
+        		public void onCheckedChanged(RadioGroup group, int checkedId){
+        			
+        			if(searchByName.isSelected())
+        			{
+        				Toast.makeText(rootView.getContext(), "Searching by name selected", Toast.LENGTH_SHORT).show();
+        				text1.setEnabled(true);
+        				text2.setEnabled(false);
+        			}
+        			else
+        			{
+        				Toast.makeText(rootView.getContext(), "Searching by ID selected", Toast.LENGTH_SHORT).show();
+        				text1.setEnabled(false);
+        				text2.setEnabled(true);
+        			}
+        		}
+        	});
+        	
+        	
+        	
             
+    		//onRadioButtonClicked(rootView);
+    		/*
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     // Perform action on click
+                	
+
+                	
+                	if(searchByName.isSelected())
+                	{
+                		
+                	}
+                	else if(searchByID.isSelected())
+                	{
+                		
+                	}
+                	else
+                	{
+                		
+                	}
                 	if(!text1.getText().toString().isEmpty()
                 			|| !text2.getText().toString().isEmpty())
                 	{
@@ -193,9 +247,35 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
                 }
             });
+            */
+            
             
             return rootView;
 		}
+		/*
+		public void onRadioButtonClicked(View view) {
+		    // Is the button now checked?
+		    boolean checked = ((RadioButton) view).isChecked();
+		    
+		    // Check which radio button was clicked
+		    switch(view.getId()) {
+		        case R.id.firstB:
+		            if (checked){
+		                // Pirates are the best
+		            	text1.setEnabled(true);
+		            	text2.setEnabled(false);
+		            }
+		            
+		            break;
+		        case R.id.secondB:
+		            if (checked){
+		                // Ninjas rule
+		            	text2.setEnabled(true);
+		            	text1.setEnabled(false);
+		            }
+		            break;
+		    }
+		}*/
 	}
 	
 

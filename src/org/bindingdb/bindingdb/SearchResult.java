@@ -38,6 +38,7 @@ public class SearchResult extends Activity{
 	private ProgressBar spinner;
 	
 	static TextView text;
+	static TextView text2;
 	
 	private Button pre;
 	private Button next;
@@ -95,6 +96,7 @@ public class SearchResult extends Activity{
 			pre = (Button)findViewById(R.id.pre);
 			next = (Button)findViewById(R.id.next);
 			text = (TextView)findViewById(R.id.no_result);
+			text2 = (TextView)findViewById(R.id.too_general);
 					
 			final BarAdapter items = new BarAdapter(SearchResult.this, potain, Uni_id);
 			
@@ -145,6 +147,13 @@ public class SearchResult extends Activity{
 		@Override
 		protected void onPostExecute(BarAdapter items) {
 			
+			if(items.Largelist.size() >= 10000)
+			{
+				spinner.setVisibility(View.GONE);
+				text2.setVisibility(View.VISIBLE);
+				return;
+			}
+			
 			pre.setEnabled(true);
 			next.setEnabled(true);
 			spinner.setVisibility(View.GONE);
@@ -152,6 +161,8 @@ public class SearchResult extends Activity{
 			
 			if(items.Largelist.isEmpty())
 				text.setVisibility(View.VISIBLE);
+			
+
 		}
 	}	
 	
