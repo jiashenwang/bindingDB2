@@ -16,6 +16,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -185,6 +186,27 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     		text1 = (EditText)rootView.findViewById(R.id.protein_name_search);
     		text2 = (EditText)rootView.findViewById(R.id.uniprot_search);
     		
+    		
+    		text1.setOnTouchListener(new View.OnTouchListener()
+            {
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					// TODO Auto-generated method stub
+					text2.setText("");
+					return false;
+				}
+            });
+    		
+    		text2.setOnTouchListener(new View.OnTouchListener()
+            {
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					// TODO Auto-generated method stub
+					text1.setText("");
+					return false;
+				}
+            });
+    		
         	//searchByName = (RadioButton) rootView.findViewById(R.id.firstB);
         	//searchByID = (RadioButton) rootView.findViewById(R.id.secondB);
     		
@@ -260,12 +282,38 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
 	public static class PlaceholderFragment extends Fragment {
 
+		EditText text;
+		Button but;
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_compound_search, container,
 					false);
+            
+			text = (EditText)rootView.findViewById(R.id.compound_name_search);
+            but = (Button)rootView.findViewById(R.id.compound_search_btn);
+            
+            but.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // Perform action on click
+                	
 
+                	if(!text.getText().toString().isEmpty())
+                	{
+                    	Intent intent = new Intent(getActivity(), CompSearchResult.class);
+                    	intent.putExtra("compound",text.getText().toString());
+                    	startActivity(intent);
+                	}
+                	else
+                	{
+                		Toast.makeText(v.getContext(),"Please enter Compound Name!",
+	        					Toast.LENGTH_SHORT).show();
+                	}
+
+                }
+            });
+            
 			return rootView;
 		}
 	}

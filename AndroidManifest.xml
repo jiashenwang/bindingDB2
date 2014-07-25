@@ -34,6 +34,11 @@
             android:name="org.bindingdb.bindingdb.TestActivity"
             android:label="@string/title_activity_test" >
         </activity>
+        
+        <activity
+            android:name="org.bindingdb.bindingdb.CompSearchResult"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

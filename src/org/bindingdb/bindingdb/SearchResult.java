@@ -77,14 +77,6 @@ public class SearchResult extends Activity{
 
 		  
 		
-		  
-		/*
-		  if(asyncHelper.getStatus() == AsyncTask.Status.FINISHED)
-		{
-			pre.setVisibility(View.VISIBLE);
-			next.setVisibility(View.VISIBLE);
-		}
-		*/
 
 	}
 	
@@ -229,13 +221,43 @@ class BarAdapter extends BaseAdapter
 	ArrayList<Entry> list = new ArrayList();
 	ArrayList<Entry> Largelist = new ArrayList();
 	
+	BarAdapter(Context c, String compound)
+	{
+		context = c;
+		db = new MyDatabase(c, "cfdb.db");
+		proteins = db.getProtein();
+		
+		Largelist = db.getAllCompound(compound);
+		
+		totalPage = Largelist.size()/20;
+		
+		if(Largelist.size()%20 != 0)
+			totalPage++;
+			
+		
+		list.clear();
+		if(totalPage <= 1)
+		{
+			for(int j=0; j<Largelist.size(); j++)
+				list.add(Largelist.get(j));
+		}
+		else
+		{
+			for(int j=0; j<20; j++)
+				list.add(Largelist.get(j));
+		}
+		
+		currentPage++;
+		
+	}
+	
 	BarAdapter(Context c, String potain,String Uni_id)
 	{
 		id = Uni_id;
 		pot = potain;
 		
 		context = c;
-		db = new MyDatabase(c);
+		db = new MyDatabase(c, "pfdb.db");
 		proteins = db.getProtein();
 		
 		if(!Uni_id.isEmpty() && !pot.isEmpty())
@@ -282,18 +304,7 @@ class BarAdapter extends BaseAdapter
 	public boolean moveToNext()
 	{
 		list.clear();
-		/*
-		if(currentPage >= totalPage)
-		{	
-			currentPage--;
-			
-			for(int j=currentPage*20; j<Largelist.size(); j++)
-				list.add(Largelist.get(j));
-			
-			return false;
-		}
-		else
-		{*/
+
 			if(Largelist.size()==0)
 				return false;
 			if(20*(currentPage+1)>Largelist.size())
@@ -323,26 +334,7 @@ class BarAdapter extends BaseAdapter
 		
 		if(Largelist.size()==0)
 			return false;
-	/*	
-		if(currentPage <= 0)
-		{
-			currentPage=1;
-			
-			if(totalPage == 1)
-			{
-				for(int j=0; j<Largelist.size(); j++)
-					list.add(Largelist.get(j));
-			}
-			else
-			{
-				for(int j=0; j<20; j++)
-					list.add(Largelist.get(j));
-			}
-			
-			return false;
-		}
-		else
-		{*/
+
 			
 			for(int j=currentPage*20-20; j<currentPage*20; j++)
 				list.add(Largelist.get(j));

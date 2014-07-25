@@ -13,12 +13,11 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 public class MyDatabase extends SQLiteAssetHelper {
 
-	private static final String DATABASE_NAME = "bindingDBtim.db";
-	private static final String sqlTables = "bindingDBtim";
+	private static final String sqlTables = "db";
     private static final int DATABASE_VERSION = 1;
 	
-    public MyDatabase(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    public MyDatabase(Context context, String dbName) {
+        super(context, dbName, null, DATABASE_VERSION);
     }
 	
     public Cursor getProtein() {
@@ -37,7 +36,21 @@ public class MyDatabase extends SQLiteAssetHelper {
 		return c;
 
 	}
-    
+    public ArrayList<Entry> getAllCompound(String comp)
+    {
+	    String selectQuery = "SELECT  * " +
+				 "FROM " + sqlTables + " " +
+				 "WHERE "+ "BindingDB_Ligand_Name" + " LIKE \"" + "%"+ comp + "%" +"\""
+				 	+"COLLATE NOCASE";
+
+		// get a writable instance of our database 
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+		
+		// return placeIt list
+		return getEntriesList(cursor);
+		
+    }
 	public ArrayList<Entry> getAllConpoundsByProtainAndId(String protain, String id) {
 		 
 		 // Select All Query
